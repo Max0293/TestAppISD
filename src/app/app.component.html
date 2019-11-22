@@ -1,0 +1,85 @@
+<form #form="ngForm">
+    <h1> Enter information about yourself </h1>
+  
+    <div>
+      <div>
+        <input class="name" placeholder="Enter your name" required
+               [(ngModel)]="person.firstName" name="name" #firstName="ngModel"/>
+  
+        <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">
+          <div *ngIf="firstName.errors.required">
+            Name is required.
+          </div>
+        </div>
+      </div>
+  
+      <div>
+        <input class="age" placeholder="Enter your age" pattern="\d+(\.\d+)?" required
+               [(ngModel)]="person.age" name="age" #age="ngModel"/>
+  
+        <div *ngIf="age.invalid && (age.dirty || age.touched)" class="alert alert-danger">
+          <div *ngIf="age.errors.required">
+            Age is required.
+          </div>
+  
+          <div *ngIf="age.errors.pattern">
+            Age value must be a number
+          </div>
+        </div>
+      </div>
+  
+      <div>
+        <input class="height" placeholder="Enter your height (m)" pattern="\d+(\.\d+)?" required
+               [(ngModel)]="person.height" name="height" #height="ngModel"/>
+  
+        <div *ngIf="height.invalid && (height.dirty || height.touched)" class="alert alert-danger">
+          <div *ngIf="height.errors.required">
+            Height is required.
+          </div>
+  
+          <div *ngIf="height.errors.pattern">
+            Height value must be a number
+          </div>
+        </div>
+      </div>
+  
+      <div>
+        <input class="weight" placeholder="Enter your weight (kg)" pattern="\d+(\.\d+)?" required
+               [(ngModel)]="person.weight" name="weight" #weight="ngModel"/>
+  
+        <div *ngIf="weight.invalid && (weight.dirty || weight.touched)" class="alert alert-danger">
+          <div *ngIf="weight.errors.required">
+            Weight is required.
+          </div>
+  
+          <div *ngIf="weight.errors.pattern">
+            Weight value must be a number
+          </div>
+        </div>
+      </div>
+  
+      <div>
+        <button class="btn" (click)="CheckBMI()" [disabled]="!form.valid || !form.dirty">Calculate body mass index</button>
+      </div>
+    </div>
+  
+    <table border="1" class="table table-striped">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Mass</th>
+        <th>Result</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let person of people">
+        <td>{{person.firstName}}</td>
+        <td>{{person.age}}</td>
+        <td>{{person.weight}}</td>
+        <td>{{person.resultOfIndex}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </form>
+  
