@@ -62,7 +62,7 @@ export class AppComponent {
       alert('link to "http://nikopharm.ua/ru/dieta-n-2/"');
     }
 
-    this.people.push(this.person);
+    this.people.push({...this.person});
   }
 }
 
